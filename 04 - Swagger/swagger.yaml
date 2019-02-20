@@ -1,0 +1,109 @@
+swagger: "2.0"
+info:
+  description: "This is a sample Library server."
+  version: "1.0.0"
+  title: "Swagger Library"
+  contact:
+    email: "rfortes@gmail.com"
+host: "library.pucminas.asw"
+basePath: "/v2"
+tags:
+- name: "book"
+  description: "Find your book"
+schemes:
+- "https"
+- "http"
+paths:
+  
+  /book/{name}:
+    get:
+      tags:
+      - "book"
+      summary: "Get book by book name"
+      description: ""
+      operationId: "getBookByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "The name that needs to be fetched. Use book1 for testing. "
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid book name supplied"
+        404:
+          description: "Book not found"
+  /book/evaluation:
+    post:
+      tags:
+      - "book"
+      summary: "Evaluates a book"
+      description: ""
+      operationId: "createBookEvaluation"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Book with evaluation"
+        required: true
+        schema:
+          type: "object"
+      responses:
+        default:
+          description: "successful operation"
+
+  /order:
+    post:
+      tags:
+      - "order"
+      summary: "Order a book"
+      description: ""
+      operationId: "createBookOrder"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Book that is being ordered"
+        required: true
+        schema:
+          type: "object"
+      responses:
+        default:
+          description: "successful operation"
+          
+  /order/delivery/{orderId}:
+    get:
+      tags:
+      - "order"
+      summary: "Get order delivery status"
+      description: ""
+      operationId: "getDeliveryStatusByOrderId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "orderId"
+        in: "path"
+        description: "The orderId that needs to be fetched. Use order11 for testing. "
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid order Id supplied"
+        404:
+          description: "Order delivery not found"
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
